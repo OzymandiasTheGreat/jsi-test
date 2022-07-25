@@ -1,5 +1,5 @@
 {
-  "name": "react-native-fast-crypto",
+  "name": "jsi-test",
   "version": "0.1.0",
   "description": "A fast implementation of Node's `crypto` module written in C/C++ JSI",
   "main": "lib/commonjs/index",

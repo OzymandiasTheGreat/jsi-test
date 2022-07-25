@@ -1,18 +1,18 @@
-#import "FastCryptoModule.h"
+#import "JSITestModule.h"
 
 #import <React/RCTBridge+Private.h>
 #import <React/RCTUtils.h>
 #import <jsi/jsi.h>
 
-#import "../cpp/FastCryptoHostObject.h"
+#import "../cpp/JSITestHostObject.h"
 
-@implementation FastCryptoModule
+@implementation JSITestModule
 
-RCT_EXPORT_MODULE(FastCrypto)
+RCT_EXPORT_MODULE(JSITest)
 
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install)
 {
-    NSLog(@"Installing JSI bindings for react-native-fast-crypto...");
+    NSLog(@"Installing JSI bindings for jsi-test...");
     RCTBridge* bridge = [RCTBridge currentBridge];
     RCTCxxBridge* cxxBridge = (RCTCxxBridge*)bridge;
     if (cxxBridge == nil) {
@@ -27,11 +27,11 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install)
     }
     auto& runtime = *jsiRuntime;
 
-    auto hostObject = std::make_shared<margelo::FastCryptoHostObject>();
+    auto hostObject = std::make_shared<margelo::JSITestHostObject>();
     auto object = jsi::Object::createFromHostObject(runtime, hostObject);
-    runtime.global().setProperty(runtime, "__FastCryptoProxy", std::move(object));
+    runtime.global().setProperty(runtime, "__JSITestProxy", std::move(object));
 
-    NSLog(@"Successfully installed JSI bindings for react-native-fast-crypto!");
+    NSLog(@"Successfully installed JSI bindings for jsi-test!");
     return @true;
 }
 

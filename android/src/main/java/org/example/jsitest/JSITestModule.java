@@ -1,4 +1,4 @@
-package com.reactnativefastcrypto;
+package org.example.jsitest;
 
 import android.util.Log;
 
@@ -11,11 +11,11 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 
-@ReactModule(name = FastCryptoModule.NAME)
-public class FastCryptoModule extends ReactContextBaseJavaModule {
-  public static final String NAME = "FastCrypto";
+@ReactModule(name = JSITestModule.NAME)
+public class JSITestModule extends ReactContextBaseJavaModule {
+  public static final String NAME = "JSITest";
 
-  public FastCryptoModule(ReactApplicationContext reactContext) {
+  public JSITestModule(ReactApplicationContext reactContext) {
     super(reactContext);
   }
 
@@ -29,17 +29,17 @@ public class FastCryptoModule extends ReactContextBaseJavaModule {
   public boolean install() {
     try {
       Log.i(NAME, "Loading C++ library...");
-      System.loadLibrary("reactnativefastcrypto");
+      System.loadLibrary("jsitest");
 
       JavaScriptContextHolder jsContext = getReactApplicationContext().getJavaScriptContextHolder();
 
-      Log.i(NAME, "Installing JSI Bindings for react-native-fast-crypto...");
+      Log.i(NAME, "Installing JSI Bindings for jsi-test...");
       nativeInstall(jsContext.get());
-      Log.i(NAME, "Successfully installed JSI Bindings for react-native-fast-crypto!");
+      Log.i(NAME, "Successfully installed JSI Bindings for jsi-test!");
 
       return true;
     } catch (Exception exception) {
-      Log.e(NAME, "Failed to install JSI Bindings for react-native-fast-crypto!", exception);
+      Log.e(NAME, "Failed to install JSI Bindings for jsi-test!", exception);
       return false;
     }
   }
